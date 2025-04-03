@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AdFeatured;
 use App\Http\Resources\AdResource;
 use App\Models\Ad;
 use App\Traits\ResponseTrait;
@@ -214,6 +215,8 @@ class AdController extends Controller
         $user = auth()->user();
 
         $user->featuredAds()->syncWithoutDetaching($ad);
+
+        event(new AdFeatured($ad, $user));
 
         return response()->json([
             'data' => [

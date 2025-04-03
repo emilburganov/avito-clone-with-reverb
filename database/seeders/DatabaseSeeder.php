@@ -20,12 +20,6 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        User::query()->create([
-            'email' => 'admin@admin.ru',
-            'password' => 'admin',
-            'is_admin' => true,
-        ]);
-
         Category::query()->create([
             'name' => 'Одежда',
         ]);
