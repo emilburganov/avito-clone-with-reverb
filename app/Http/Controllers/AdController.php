@@ -44,7 +44,14 @@ class AdController extends Controller
             $ads->whereHas('categories', fn($q) => $q->whereIn('categories.id', $request->category_ids));
         }
 
-        return response()->json(AdResource::collection($ads->get()));
+        $data = $ads->paginate();
+
+        return response()->json([
+            'data' => [
+                'items' => AdResource::collection($data),
+                'total_pages' => $data->lastPage(),
+            ]
+        ]);
     }
 
     /**
