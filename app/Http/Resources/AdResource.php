@@ -17,6 +17,7 @@ class AdResource extends JsonResource
         return [
             'id' => $this->id,
             'status' => $this->status,
+            'admin_message' => $this->admin_message,
             'title' => $this->title,
             'price' => $this->price,
             'categories' => CategoryResource::collection($this->categories),
